@@ -8,12 +8,13 @@ interface FoodTag {
   image: string;
   name: string;
 }
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
 
 const FoodCategories: React.FC = () => {
   const [foodTags, setFoodTags] = useState<FoodTag[]>([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/food-tags')
+    axios.get(`${baseUrl}/api/food-tags`)
       .then(response => {
         setFoodTags(response.data);
         console.log(response.data);
@@ -42,7 +43,7 @@ const FoodCategories: React.FC = () => {
         {foodTags.map(foodTag => (
           <Box key={foodTag._id} sx={{ textAlign: 'center' }}>
             <Box>
-              <img src={`http://localhost:5000/${foodTag.image}`} alt={foodTag.name}
+              <img src={`${baseUrl}/${foodTag.image}`} alt={foodTag.name}
                 className='w-10 h-10' />
             </Box>
             <Typography variant="subtitle1">{foodTag.name}</Typography>

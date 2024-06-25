@@ -7,6 +7,8 @@ import Radio from '@mui/material/Radio';
 import FormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel';
 import Skeleton from '@mui/material/Skeleton';
 
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
+
 interface Store {
   _id: string;
   name: string;
@@ -104,7 +106,7 @@ const StoresPage: React.FC<StoresPageProps> = ({ stores, notFound, loading }) =>
                   <CardMedia
                     component="img"
                     height="140"
-                    image={`http://localhost:5000/${store.image}`}
+                    image={`${baseUrl}/${store.image}`}
                     alt={store.name}
                   />
                   <CardContent>

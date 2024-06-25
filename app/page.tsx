@@ -9,6 +9,8 @@ import Navbar from '@/app/components/Navbar';
 import { debounce } from '@/utils/debounce';
 import { Box } from '@mui/material';
 
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
+
 const TabToggle: React.FC = () => {
   const [activeTab, setActiveTab] = useState('restaurants');
   const [search, setSearch] = useState('');
@@ -18,7 +20,7 @@ const TabToggle: React.FC = () => {
 
   const fetchStores = useCallback(debounce(async (search = '') => {
     try {
-      const response = await axios.get('http://localhost:5000/api/stores', {
+      const response = await axios.get(`${baseUrl}/api/stores`, {
         params: { search }
       });
       console.log('Stores fetched:', response.data);
